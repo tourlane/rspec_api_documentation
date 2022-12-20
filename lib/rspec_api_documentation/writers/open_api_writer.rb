@@ -145,6 +145,8 @@ module RspecApiDocumentation
 
           if current[:properties][field[:name]][:type] == :array
             current[:properties][field[:name]][:items] = field[:items] || OpenApi::Helper.extract_items(field[:value][0], opts)
+          elsif current[:properties][field[:name]][:type] == :object
+            current[:properties][field[:name]][:properties] = field[:properties]
           else
             opts.each { |k, v| current[:properties][field[:name]][k] = v if v }
           end
