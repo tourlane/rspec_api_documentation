@@ -45,6 +45,8 @@ module RspecApiDocumentation
 
     def read_request_body
       input = last_request.env["rack.input"]
+      return if input.nil?
+
       input.rewind
       input.read
     end
